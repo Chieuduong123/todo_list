@@ -6,7 +6,6 @@ import {
   BadRequestException,
 } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { TodosService } from 'src/todos/todos.service';
 import { UsersService } from 'src/users/users.service';
 
 @Injectable()

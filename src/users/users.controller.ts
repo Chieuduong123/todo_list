@@ -14,14 +14,12 @@ import {
 import { UsersService } from './users.service';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { CurrentUser } from './decorators/currentUser.decorator';
 import { User } from './entities/user.entity';
 
 @Controller('users')
-// @UseInterceptors(ClassSerializerInterceptor)
-@UseInterceptors(LoggingInterceptor)
+@UseInterceptors(ClassSerializerInterceptor)
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
@@ -56,5 +54,4 @@ export class UsersController {
   async getCurrentUser(@CurrentUser() currentUser) {
     return await currentUser;
   }
-
 }

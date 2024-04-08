@@ -1,4 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+} from '@nestjs/common';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
 import { Todo } from './entities/todo.entity';
@@ -22,7 +25,7 @@ export class TodosService {
     createTodoDto: CreateTodoDto,
     currentUser: User,
     createTodoInformationDto: CreateTodoInformationDto,
-  ): Promise<{ todo: Todo; todoInformation: TodoInformation }> {
+  ): Promise<any> {
     const todo = this.todoRepository.create(createTodoDto);
     todo.user = currentUser;
 
@@ -36,7 +39,7 @@ export class TodosService {
     const savedTodoInformation =
       await this.todoInformationRepository.save(todoInformation);
 
-    return { todo: savedTodo, todoInformation: savedTodoInformation };
+    return savedTodoInformation;
   }
 
   async getTodoById(id: number, userId: number): Promise<any> {

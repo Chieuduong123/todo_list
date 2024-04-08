@@ -12,11 +12,11 @@ import {
   ParseIntPipe,
   Put,
   UnauthorizedException,
+  ClassSerializerInterceptor,
 } from '@nestjs/common';
 import { TodosService } from './todos.service';
 import { CreateTodoDto } from './dto/create-todo.dto';
 import { UpdateTodoDto } from './dto/update-todo.dto';
-import { LoggingInterceptor } from 'src/interceptors/logging.interceptor';
 import { AuthGuard } from 'src/guards/auth.guard';
 import { CurrentUser } from 'src/users/decorators/currentUser.decorator';
 import { User } from 'src/users/entities/user.entity';
@@ -24,7 +24,7 @@ import { CreateTodoInformationDto } from 'src/todo_informations/dto/create-todo_
 import { Todo } from './entities/todo.entity';
 import { UpdateTodoInformationDto } from 'src/todo_informations/dto/update-todo_information.dto';
 
-@UseInterceptors(LoggingInterceptor)
+@UseInterceptors(ClassSerializerInterceptor)
 @Controller('todos')
 export class TodosController {
   constructor(private readonly todosService: TodosService) {}
